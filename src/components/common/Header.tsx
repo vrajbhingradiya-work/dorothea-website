@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import Image from "next/image";
@@ -10,7 +11,7 @@ import { NavDesktop } from "./NavDesktop";
 import { motion } from "framer-motion";
 import { MdOutlineBookmarkAdd as BookingLogo } from "react-icons/md";
 
-function Header() {
+function Header({ setIsModalOpen }: { setIsModalOpen: any }) {
   // const menuLinks = [
   //   {
   //     title: "ABOUT",
@@ -73,13 +74,15 @@ function Header() {
               </Link>
             </motion.div>
             <div className="cols-span-1 min-h-full  border-l-2 border-white/50 ">
-              <Link
-                href="/#booking"
+              <button
+                onClick={() => {
+                  setIsModalOpen(true);
+                }}
                 className=" min-h-20 cols-span-1 hidden xl:flex gap-4 items-center justify-end  tracking-wider cursor-pointer px-8   "
               >
                 <BookingLogo className="h-6 w-6 fill-white" />
-                <span className="-ml-2">BOOKING</span>
-              </Link>
+                <span className="-ml-2">RESERVATION</span>
+              </button>
             </div>
           </div>
           {/* <div className="   flex justify-center items-center gap-4 py-4 xl:border-b-[1px] border-double border-white/50 ">

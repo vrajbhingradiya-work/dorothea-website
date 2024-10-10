@@ -1,9 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { motion, useTransform, useScroll, useInView } from "framer-motion";
-import Link from "next/link";
 import { useRef } from "react";
 
-const HorizontalScrollCarousel = () => {
+const HorizontalScrollCarousel = ({
+  setIsModalOpen,
+}: {
+  setIsModalOpen: any;
+}) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -74,7 +78,9 @@ const HorizontalScrollCarousel = () => {
             </div>
           </div>
           {cards.map((card) => {
-            return <Card card={card} key={card.id} />;
+            return (
+              <Card setIsModalOpen={setIsModalOpen} card={card} key={card.id} />
+            );
           })}
         </motion.div>
       </motion.div>
@@ -115,7 +121,13 @@ const HorizontalScrollCarousel = () => {
   );
 };
 
-const Card = ({ card }: { card: CardType }) => {
+const Card = ({
+  card,
+  setIsModalOpen,
+}: {
+  card: CardType;
+  setIsModalOpen: any;
+}) => {
   return (
     <div
       key={card.id}
@@ -130,13 +142,16 @@ const Card = ({ card }: { card: CardType }) => {
         className="absolute inset-0 z-0 transition-transform duration-300 scale-105 group-hover:scale-100 group-hover:translate-y-2  ease-in-out   rounded-t-full ml-16 mr-16 mt-16"
       ></div>
       <div className="absolute inset-0 z-10 grid place-content-center">
-        <Link href="/#reservation">
-          <button className="border-[3px] border-gold transition-all hover:bg-secondary-default duration-300 ease-in-out cursor-pointer w-[100px] rounded-full p-8 px-[3.5rem] flex hover:scale-125 hover:border-none justify-center item-center ">
-            Reserve
-            <br />
-            Now!
-          </button>
-        </Link>
+        <button
+          onClick={() => {
+            setIsModalOpen(true);
+          }}
+          className="border-[3px] border-gold transition-all hover:bg-secondary-default duration-300 ease-in-out cursor-pointer w-[100px] rounded-full p-8 px-[3.5rem] flex hover:scale-125 hover:border-none justify-center item-center "
+        >
+          Reserve
+          <br />
+          Now!
+        </button>
       </div>
     </div>
   );

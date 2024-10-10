@@ -3,8 +3,15 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Header from "./Header";
+import SpringModal from "../pageComponents/home/tableReservationForm/SpringModal";
 
-export default function Navbar() {
+export default function Navbar({
+  isModalOpen,
+  setIsModalOpen,
+}: {
+  isModalOpen: boolean;
+  setIsModalOpen: any;
+}) {
   const [isScrolling, setIsScrolling] = useState(false);
 
   const handleScroll = () => {
@@ -28,14 +35,18 @@ export default function Navbar() {
       <AnimatePresence>
         {isScrolling ? (
           <>
-            <NavbarScroll isScrolling={isScrolling} />
-            <Header />
+            <NavbarScroll
+              isScrolling={isScrolling}
+              setIsModalOpen={setIsModalOpen}
+            />
+            <Header setIsModalOpen={setIsModalOpen} />
           </>
         ) : (
           <div className=" fixed top-0 left-0 w-full z-30  ">
-            <Header />
+            <Header setIsModalOpen={setIsModalOpen} />
           </div>
         )}
+        <SpringModal isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
       </AnimatePresence>
     </>
   );
@@ -484,7 +495,7 @@ export default function Navbar() {
 
 // scroll navbar
 
-function NavbarScroll({ isScrolling }: any) {
+function NavbarScroll({ isScrolling, setIsModalOpen }: any) {
   return (
     <motion.nav
       key={1}
@@ -494,7 +505,7 @@ function NavbarScroll({ isScrolling }: any) {
       variants={NavAnimations}
       className="bg-secondary-dark fixed top-0 left-0 w-full z-30  "
     >
-      <Header />
+      <Header setIsModalOpen={setIsModalOpen} />
     </motion.nav>
   );
 }

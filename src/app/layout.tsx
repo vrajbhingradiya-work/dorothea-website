@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/common/Footer";
-import Navbar from "@/components/common/Navbar";
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
@@ -43,7 +42,6 @@ export default function RootLayout({
             </Link>
           </SlideInFromBottom> */}
 
-        <Navbar />
         {children}
         <Footer />
       </body>

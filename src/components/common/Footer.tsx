@@ -90,9 +90,9 @@ function Footer({ footerData }: any) {
 
   return (
     <div className=" bg-[#FAF6F3] text-secondary-dark gap-4 flex flex-col ">
-      <div className="flex justify-center items-center max-h-[250px] overflow-hidden  ">
+      <div className="flex justify-center items-center max-h-[250px]  ">
         <Image
-          className="object-fit -translate-y-28  overflow-hidden"
+          className="object-fit -translate-y-28  "
           src={foodImage}
           alt="food image"
         />

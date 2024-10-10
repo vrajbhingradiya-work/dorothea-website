@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "useClient";
 import React from "react";
 
@@ -5,7 +6,7 @@ import BrandLogo from "../assets/images/company-logo/wheels of world white.png";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-function Loader({ duration = 5500 }: any) {
+function Loader({ duration = 5500 }: { duration?: number }) {
   const firstLoadAnimation1 = {
     hidden: {
       opacity: 1,
